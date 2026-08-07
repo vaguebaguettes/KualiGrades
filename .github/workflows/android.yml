@@ -23,6 +23,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Pin pip to avoid pip 24 breaking change
+        run: |
+          python -m pip install --upgrade "pip<24"
+
       - name: Install Linux Packages
         run: |
           sudo apt update
@@ -34,10 +38,6 @@ jobs:
           pkg-config zlib1g-dev libncurses5 \
           libncurses5-dev libtinfo6 cmake \
           libffi-dev libssl-dev
-
-      - name: Upgrade pip
-        run: |
-          python -m pip install --upgrade pip
 
       - name: Install Buildozer
         run: |
@@ -63,4 +63,3 @@ jobs:
         with:
           name: KualiGrades-APK
           path: bin/*.apk
-          
